@@ -3,19 +3,40 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const [user, setUser] = useState(undefined);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((response) => { setUser(response) });
+  }, []);
+
+  if (user === undefined) return null;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar barStyle='light-content' />
+      <SafeAreaView style={styles.background}>
+        {user ? <Logout userName={user.email} /> : <Auth />}
+      </SafeAreaView>
+    </>
   );
 }
 
+function Logout(props) {
+  const { userName } = props;
+  const logout = () => {
+    firebase.auth().signOut();
+  }
+  return (
+    <View>
+      <Welcome userName={userName}></Welcome>
+      <Button title="Cerrar sesión" onPress={logout}></Button>
+    </View>)
+}
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  background: {
+    backgroundColor: '#15212B',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    height: '100%',
+    width: '100%'
+  }
 });
