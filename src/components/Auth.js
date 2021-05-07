@@ -5,6 +5,7 @@ import RegisterForm from './RegisterForm'
 
 export default function Auth(props) {
     const [isLogin, setIsLogin] = useState(false);
+
     const changeForm = () => {
         setIsLogin(!isLogin);
     }
@@ -18,6 +19,11 @@ export default function Auth(props) {
                 ) : (
                     <RegisterForm changeForm={changeForm} />
                 )
+                /* 3>4 ? (
+                    <LoginForm changeForm={changeForm} />
+                ) : (
+                    <RegisterForm changeForm={changeForm} />
+                )*/
             }
         </View>
     )

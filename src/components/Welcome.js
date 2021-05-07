@@ -11,20 +11,22 @@ import 'firebase/auth'
 export default function Welcome(props) {
     const { userName } = props;
 
-    const [cantidad, setCantidad] = useState(0);
-    const [interes, setInteres] = useState(0);
-    const [meses, setMeses] = useState(0);
-    const [iva, setIVA] = useState(0);
-    const [total, setTotal] = useState(0);
+    const [cantidad, setCantidad] = useState(null);
+    const [interes, setInteres] = useState(null);
+    const [meses, setMeses] = useState(null);
+    const [iva, setIVA] = useState(null);
+    const [total, setTotal] = useState(null);
     const [nombre, setNombre] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        if (cantidad && interes && meses) calculate();
-        else reset();
+            /*if (cantidad && interes && meses) calculate();
+            else reset();*/
     }, [cantidad, interes, meses]);
+    
 
     const calculate = () => {
+        console.log('Hola');
         reset();
         if (!cantidad) {
             setErrorMessage('No has ingresado ningun monto');
@@ -86,10 +88,6 @@ export default function Welcome(props) {
             />
 
             <Footer calculate={calculate} />
-
-            <View style={styles2.login}>
-                <Button color="#CC2121DC" title="Cerrar sesión" onPress={logout}></Button>
-            </View>
 
         </View>
     );

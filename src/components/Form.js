@@ -5,15 +5,12 @@ import colors from '../utils/colors';
 
 
 export default function Form(props) {
-
     const { setCantidad, setInteres, setMeses } = props;
     const [arr, setArr] = useState([])
-    const [interes, setInt] = useState([])
+    const [interes, setInt] = useState('')
 
     let changeArr = (cantidad) => {
-        console.log("Hola", parseInt(cantidad))
-
-
+        //console.log("Hola", parseInt(cantidad))
         if (parseInt(cantidad) <= 10000) {
             setArr([
                 { label: '3 meses', value: 3 },
@@ -46,6 +43,16 @@ export default function Form(props) {
         }
     }
 
+    let Ola=(props)=>{
+       const {hola}= props
+
+       return(
+           <>
+              <Text>{hola}</Text>
+           </>
+       )
+    }
+
     return (
         <View style={styles.viewForm}>
             <View style={styles.viewInputs}>
@@ -56,10 +63,10 @@ export default function Form(props) {
                     onChange={(e) => {
                         setCantidad(e.nativeEvent.text);
                         changeArr(e.nativeEvent.text);
-                    }
+                     }
                     }
                 />
-
+              
                 <Text placeholder="Interés" style={[styles.input, { fontSize: 18, alignContent: 'center', textAlign: 'center', textAlignVertical: 'center', paddingVertical: 17 }]}>Interés: {interes}</Text>
             </View>
             <RNPickerSelect
@@ -71,10 +78,10 @@ export default function Form(props) {
                 }}
                 items={arr}
             />
+
+              <Ola hola={'hola'}/>
         </View>
     );
-
-
 }
 
 
