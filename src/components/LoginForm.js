@@ -7,7 +7,7 @@ export default function LoginForm(props) {
     const { changeForm } = props;
     const [formData, setFormData] = useState(defaultValue);
     const [formError, setFormError] = useState({});
-    
+
     const login = () => {
         let error = {};
         if (!formData.email || !formData.password) {
@@ -18,7 +18,6 @@ export default function LoginForm(props) {
             console.log("Error 2");
             error.email = true;
         } else {
-           
             firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
                 .then(() => {
                     console.log("ok");
@@ -55,10 +54,11 @@ export default function LoginForm(props) {
             <TouchableOpacity onPress={login}>
                 <Text style={styles.btnT}>Iniciar sesión</Text>
             </TouchableOpacity>
+
             <View style={styles.login}>
                 <TouchableOpacity onPress={changeForm}>
-                    <Text style={styles.btnT}>Registrate</Text>
-                </TouchableOpacity>.
+                    <Text style={styles.btnT}>Regístrate</Text>
+                </TouchableOpacity>
             </View>
         </>
     );

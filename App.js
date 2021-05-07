@@ -1,6 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+
+import Welcome from './src/components/Welcome';
+import firebase from './src/utils/firebase';
+import Auth from './src/components/Auth';
+import 'firebase/auth'
 
 export default function App() {
   const [user, setUser] = useState(undefined);
@@ -22,13 +27,10 @@ export default function App() {
 
 function Logout(props) {
   const { userName } = props;
-  const logout = () => {
-    firebase.auth().signOut();
-  }
+
   return (
-    <View>
+    <View style={{ height: '100%', width: '100%' }}>
       <Welcome userName={userName}></Welcome>
-      <Button title="Cerrar sesión" onPress={logout}></Button>
     </View>)
 }
 

@@ -1,0 +1,41 @@
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
+
+export default function Footer(props) {
+    const { calculate } = props;
+    return (
+        <View style={styles.viewFooter}>
+            <TouchableOpacity style={styles.button} onPress={calculate}>
+                <Text style={styles.text}>Calcular</Text>
+            </TouchableOpacity>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    viewFooter: {
+        position: 'absolute',
+        bottom: 30,
+        width: '100%',
+        backgroundColor: '#185FCA',
+        height: 100,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        alignItems: 'center',
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+    },
+    button: {
+        backgroundColor: '#0B3068',
+        padding: 16,
+        borderRadius: 20,
+        width: '75%'
+    },
+    text: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: '#fff',
+        textAlign: 'center'
+    }
+});

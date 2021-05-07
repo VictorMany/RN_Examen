@@ -11,7 +11,7 @@ export default function Auth(props) {
 
     return (
         <View style={styles.view}>
-            <Image style={styles.logo} source={require('../assets/apple.png')} />
+            <Image style={styles.logo} source={require('../assets/logo.jpg')} />
             {
                 isLogin ? (
                     <LoginForm changeForm={changeForm} />
@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     logo: {
-        width: '70%',
+        width: 240,
         height: 240,
         marginTop: 50,
-        marginBottom: 50
+        marginBottom: 50,
+        borderRadius: '50%'
     }
 })
