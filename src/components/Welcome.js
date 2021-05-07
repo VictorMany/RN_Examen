@@ -19,9 +19,13 @@ export default function Welcome(props) {
     const [nombre, setNombre] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
 
+
+    //OnCreate, pero tambien es un observador de las props
     useEffect(() => {
-            /*if (cantidad && interes && meses) calculate();
-            else reset();*/
+        /*if (cantidad && interes && meses) calculate();
+        else reset();*/
+        console.log("modifiqué meses")
+        //Las variables que usamos en el arreglo son trigggers que disparan la funcion de useEffect
     }, [cantidad, interes, meses]);
     
 
