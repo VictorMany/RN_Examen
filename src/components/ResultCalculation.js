@@ -3,18 +3,20 @@ import { StyleSheet, Text, View } from 'react-native';
 
 
 export default function ResultCalculation(props) {
-    const { cantidad, interes, meses, total, errorMessage } = props;
+    const { cantidad, interes, iva, total, errorMessage, nombre } = props;
 
     return (
         <View style={styles.content}>
             {total && (
                 <View style={styles.boxResult}>
-                    <Text style={styles.title}>Detalle Prestamo</Text>
+
+                    <Text style={styles.title}>Detalle Préstamo</Text>
+                    <Text style={styles.title2}>Usuario: {nombre}</Text>
                     <DataResult title="Cantidad solicitada $" value={`${cantidad}`} />
-                    <DataResult title="% Interes:" value={`${interes}`} />
-                    <DataResult title="Plazos:" value={`${meses} meses`} />
+                    <DataResult title="% Interés: " value={`${interes}`} />
+                    <DataResult title="IVA: " value={`${iva}`} />
                     <DataResult title="Pago mensual $" value={`${total.pmensual}`} />
-                    <DataResult title="Total a pagar:" value={`${total.ptotal}`} />
+                    <DataResult title="Total a pagar con iva: " value={`${parseInt(total.ptotal) + parseInt(iva)}`} />
                 </View>
             )}
             <View>
@@ -58,7 +60,15 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: 'center',
         fontWeight: 'bold',
-        marginBottom: 20
+        marginBottom: 20,
+        color: 'white'
+    },
+    title2: {
+        fontSize: 15,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: 20,
+        color: 'white'
     },
     datar: {
         flexDirection: 'row',

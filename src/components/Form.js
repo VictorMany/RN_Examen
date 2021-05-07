@@ -1,11 +1,50 @@
-import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, View, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import colors from '../utils/colors';
+
 
 export default function Form(props) {
 
     const { setCantidad, setInteres, setMeses } = props;
+    const [arr, setArr] = useState([])
+    const [interes, setInt] = useState([])
+
+    let changeArr = (cantidad) => {
+        console.log("Hola", parseInt(cantidad))
+
+
+        if (parseInt(cantidad) <= 10000) {
+            setArr([
+                { label: '3 meses', value: 3 },
+                { label: '6 meses', value: 6 },
+            ]);
+            setInteres('2');
+            setInt('2');
+        }
+        else if (parseInt(cantidad) > 10000 && parseInt(cantidad) <= 20000) {
+            setArr([
+                { label: '3 meses', value: 3 },
+                { label: '6 meses', value: 6 },
+                { label: '9 meses', value: 9 },
+            ]);
+            setInteres('4');
+            setInt('4');
+
+        }
+        else if (parseInt(cantidad) > 20000) {
+            setArr([
+                { label: '3 meses', value: 3 },
+                { label: '6 meses', value: 6 },
+                { label: '9 meses', value: 9 },
+                { label: '12 meses', value: 12 },
+                { label: '24 meses', value: 24 },
+            ]);
+            setInteres('6');
+            setInt('6');
+
+        }
+    }
 
     return (
         <View style={styles.viewForm}>
@@ -14,14 +53,14 @@ export default function Form(props) {
                     placeholder="Cantidad"
                     keyboardType="numeric"
                     style={styles.input}
-                    onChange={(e) => setCantidad(e.nativeEvent.text)}
+                    onChange={(e) => {
+                        setCantidad(e.nativeEvent.text);
+                        changeArr(e.nativeEvent.text);
+                    }
+                    }
                 />
-                <TextInput
-                    placeholder="Interes %"
-                    keyboardType="numeric"
-                    style={[styles.input, styles.inputP]}
-                    onChange={(e) => setInteres(e.nativeEvent.text)}
-                />
+
+                <Text placeholder="Interés" style={[styles.input, { fontSize: 18, alignContent: 'center', textAlign: 'center', textAlignVertical: 'center', paddingVertical: 17 }]}>Interés: {interes}</Text>
             </View>
             <RNPickerSelect
                 style={pickerSelectStyles}
@@ -30,17 +69,16 @@ export default function Form(props) {
                     label: 'Seleccione plazos...',
                     value: '',
                 }}
-                items={[
-                    { label: '3 meses', value: 3 },
-                    { label: '6 meses', value: 6 },
-                    { label: '9 meses', value: 9 },
-                    { label: '12 meses', value: 12 },
-                ]
-                }
+                items={arr}
             />
         </View>
     );
+
+
 }
+
+
+
 
 const styles = StyleSheet.create({
     viewForm: {
